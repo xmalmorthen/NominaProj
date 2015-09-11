@@ -1,0 +1,23 @@
+﻿<ul class="dropdown-menu">
+    <li class="header">Tienes {{messagesCount}} mensaje(s)</li>
+    <li>
+        <!-- inner menu: contains the actual data -->
+        <ul class="menu">
+            <li ng-repeat="msg in messages">
+                <a href="#">
+                    <div class="pull-left">
+                        @Html.Gravatar(Dashboard.Models.userLogged.getUserData(int.Parse(User.Identity.Name)).email, 80, new { Title = Dashboard.Models.userLogged.getUserData(int.Parse(User.Identity.Name)).user, Alt = "Gravatar" })                        
+                    </div>
+                    <h4>
+                        {{msg.user}}                    
+                        <small><i class="fa fa-clock-o"></i> {{msg.fIns}}</small>
+                    </h4>
+                    <p>{{msg.message}}</p>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="footer"><a href="#">Ver todos los mensajes</a></li>
+</ul>
+
+<script src="@Url.Content("~/Assets/Scripts/Messages.js")"></script>

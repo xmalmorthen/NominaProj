@@ -1,0 +1,39 @@
+﻿@model Dashboard.Models.LoginModel
+
+@section styles
+{
+    <link href="~/Assets/Css/Account/LogIn.css" rel="stylesheet" />
+}
+
+@{
+    ViewBag.Title = "Iniciar sesión";
+}
+
+    <div class="body"></div>
+    <div class="grad"></div>
+    <div class="header">
+        <img src="@Url.Content("~/Assets/Images/logo.png")"/>
+    </div>
+    <br>
+    @if (!ViewData.ModelState.IsValid){
+        <div class="validationsumary">
+            <i class="fa fa-exclamation-triangle fa-4x"></i>
+            @Html.ValidationSummary(true)
+        </div>
+    }
+    <div class="login">
+        @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+            @Html.AntiForgeryToken()            
+		    <input type="text" placeholder="Usuario" name="UserName" id="UserName"><br>
+		    <input type="password" placeholder="Contraseña" name="Password"><br>
+		    <input class="pull-right" type="submit" value="Login">
+        }
+    </div>
+    
+@section scripts
+{
+    <script src="@Url.Content("~/Assets/Scripts/prefixfree.min.js")"></script>
+    <script type="text/javascript">
+        $("#UserName").focus();
+    </script>
+}

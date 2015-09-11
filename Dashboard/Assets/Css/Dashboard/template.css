@@ -1,0 +1,21 @@
+.main-header .logo {
+    text-align: center;
+}
+.main-header .logo img {
+    max-width: 204px!Important;
+    max-height: 133px!Important;
+}
+.main-sidebar {
+    padding-top:170px;
+}
+
+@media (max-width: 767px) {
+    .main-header .logo {
+        position: relative;
+    }
+
+    .main-header .logo img {
+        max-width: 144px!Important;
+        max-height: 73px!Important;
+    }
+}

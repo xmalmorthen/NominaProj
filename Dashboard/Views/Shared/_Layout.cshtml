@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+
+<!DOCTYPE html>
+<html lang="es" ng-app="mainModule">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" Assets="IE=edge">
+        <title>@ViewBag.Title - Dashboard</title>
+        <meta Assets="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        
+        <link href="~/Assets/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+        <link ref="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
+        <link href="~/Assets/Dist/css/Dashboard.min.css" rel="stylesheet" />
+        <link href="~/Assets/Css/Dashboard/template.css" rel="stylesheet" />
+        <link href="~/Assets/Dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+
+        @RenderSection("styles", required: false)
+                        
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+                       
+        <script src="@Url.Content("~/Assets/Plugins/jQuery/jQuery-2.1.4.min.js")"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script> 
+        <script src="@Url.Content("~/Assets/Scripts/dashboard.js")"></script>
+
+        @Scripts.Render("~/script/modernizr")   
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+
+        @if (!Request.IsAuthenticated) {
+            @RenderPage("~/Views/Account/Login.cshtml")
+        } else {     
+
+            <div class="wrapper">
+                <header class="main-header">
+                    @RenderPage("~/Views/Dashboard/Header.cshtml")
+                </header>
+                      
+                <!-- Left side column. contains the logo and sidebar -->
+                <aside class="main-sidebar">
+                    @RenderPage("~/Views/Dashboard/LeftPanel.cshtml")        
+                </aside>
+
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <!-- Content Header (Page header) -->
+                    <section class="content-header">
+                        @RenderPage("~/Views/Dashboard/breadcrumb.cshtml")                        
+                    </section>
+
+                    <!-- Main content -->
+                    <section class="content">
+                        @RenderBody()
+                    </section><!-- /.content -->
+                </div><!-- /.content-wrapper -->
+
+                <footer class="main-footer">
+                    @RenderPage("~/Views/Dashboard/Footer.cshtml")        
+                </footer>
+
+                <!-- Control Sidebar -->
+                <aside class="control-sidebar control-sidebar-dark">
+                    @RenderPage("~/Views/Dashboard/Sidebar.cshtml")        
+                </aside><!-- /.control-sidebar -->
+                <!-- Add the sidebar's background. This div must be placed
+                    immediately after the control sidebar -->
+                <div class="control-sidebar-bg"></div>
+            </div><!-- ./wrapper -->
+        
+        }
+        
+        <script src="@Url.Content("~/Assets/Bootstrap/js/bootstrap.min.js")"></script>
+        <script src="@Url.Content("~/Assets/Plugins/fastclick/fastclick.min.js")"></script>
+        <script src="@Url.Content("~/Assets/Plugins/slimScroll/jquery.slimscroll.min.js")"></script>
+        <script src="@Url.Content("~/Assets/Dist/js/app.js")"></script>
+        <script src="@Url.Content("~/Assets/Dist/js/demo.js")"></script>
+        
+        <script type="text/javascript">
+            var $wsNomina = "@string.Format("{0}{1}{2}{3}{4}",Request.Url.Scheme, System.Uri.SchemeDelimiter, Request.Url.Authority, Request.ApplicationPath, "apiV1/")";
+            var $idUser = "@User.Identity.Name";
+        </script>
+
+        @RenderSection("scripts", required: false)
+    </body>
+
+</html>
