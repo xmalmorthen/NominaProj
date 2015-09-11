@@ -16,9 +16,6 @@
 
             $scope.messagesCount = $msgCount;
             $scope.messages = data;
-
-            console.log(data);
-
         })
         .error(function(data, status) {
             alert("Error al obtener la sección de mensajes!!!");
